@@ -1,0 +1,49 @@
+#include <iostream>
+#include <clocale>
+using namespace std;
+void Output(double array[10]) {
+    for (int i = 0; i < 10; i++) {
+        cout << array[i] << '\t';
+    }
+}
+void search(int k, double array[10]) {
+    int array_index[10];
+    int counter = 0;
+    double number;
+    for (int i = 0; i < 10; i++) {
+        number = array[i];
+        counter = 0;
+        for (int g = 0; g < 10; g++) {
+            array_index[g] = 0;
+        }
+        for (int j = i; j < 10; j++) {
+            if (array[j] == number) {
+                counter++;
+                array_index[j] = 1;
+            }
+        }
+        if (counter > k) {
+            for (int m = 0; m < 10; m++) {
+                if (array_index[m] == 1) {
+                    array[m] = 0;
+                }
+            }
+        }
+    }
+    Output(array);
+}
+
+
+int main() {
+    setlocale(LC_ALL, "");
+    cout << "Введите 10 чисел: ";
+    double array[10];
+    for (int i = 0; i < 10; i++) {
+        cin >> array[i];
+    }
+    cout << "Введите число к: ";
+    int k;
+    cin >> k;
+    search(k, array);
+    return 0;
+}
